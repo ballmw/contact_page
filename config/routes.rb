@@ -1,6 +1,7 @@
 ContactPage::Application.routes.draw do
   
 
+  get "api/form/:token" => "Api#contact_form_get"
   get "api/form" => "Api#contact_form_get"
 
   post "api/form" => "Api#contact_form_post"

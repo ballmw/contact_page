@@ -6,8 +6,8 @@ class ApiController < ApplicationController
   def contact_form_get
     # render a form as json
     if params[:token]
-      form = ContactForm.find_by_token(toke)
-      render :json => form
+      @form = ContactForm.find_by_token(params[:token])
+      render template: 'api/contact_form_get_plain',layout: false
     else
       render :status => 500
     end

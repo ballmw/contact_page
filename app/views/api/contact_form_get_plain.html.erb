@@ -1,0 +1,16 @@
+<%= @form.description %><br/>
+<ul>
+    <% for @field in @form.contact_form_field %>
+      <li><%= @field.label %><input type="text" ng-model="form.<%= @field.name %>" <%= 'required' if @field.required %>/></li>
+    <% end %>
+</ul>
+<button ng-click="submit()">Submit</button>
+<style type="text/css">
+  .css-form input.ng-invalid.ng-dirty {
+    background-color: #FA787E;
+  }
+
+  .css-form input.ng-valid.ng-dirty {
+    background-color: #78FA89;
+  }
+</style>
