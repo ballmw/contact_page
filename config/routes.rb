@@ -6,7 +6,18 @@ ContactPage::Application.routes.draw do
 
   post "api/form" => "Api#contact_form_post"
 
+  get "api/js/angualar/controller.js" => "Api#angular_controller"
+  get "api/js/ember/controller.js" => "Api#ember_controller"
+  get "api/js/loader.js" => "Api#loader"
+
+  #unused
   get "api/test" => "Api#contact_form_test"
+
+  #OPTIONS tag for CORS
+  resources :api, :only=>[:create]
+  match '/api/form/:token', :controller => 'Api', :action => 'contact_form_options', :constraints => {:method => 'OPTIONS'}
+  match '/api/form', :controller => 'Api', :action => 'contact_form_options', :constraints => {:method => 'OPTIONS'}
+
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

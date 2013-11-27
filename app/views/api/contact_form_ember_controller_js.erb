@@ -1,0 +1,21 @@
+'use strict';
+
+/* Served dynamically */
+var settings = {
+urlbase: '<%= request.protocol %><%= request.host_with_port %>/', //get origin etc for this
+token: '<%= @form.token %>' //pass through token
+}
+
+App.Router.map(function() {this.route('contact', {path: '/contact'})});
+
+App.ContactRoute = Ember.Route.extend({
+beforeModel: function () {
+//TODO use $.getScript to get a compiled handlebars template
+return $.get(settings.urlbase + 'api/form/abc', function(data){
+Ember.TEMPLATES['contact'] = Ember.Handlebars.compile(data);
+});
+}
+});
+
+//App.ContactController = Ember.ObjectController.extend();
+

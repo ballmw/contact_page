@@ -1,0 +1,29 @@
+<style type="text/css">
+
+    input.ng-pristine.ng-valid {
+        background-color: white;
+    }
+
+    input.ng-pristine.ng-invalid,
+    input.ng-dirty.ng-invalid{
+        background-color: #FA787E;
+    }
+
+    input.ng-valid.ng-dirty {
+        background-color: #78FA89;
+    }
+</style>
+
+<form name="contact_form" novalidate ng-submit="submit()" class="css-form">
+    {{message}}
+    <fieldset>
+        <legend><%= @form.description %></legend>
+        <input type="hidden" ng-model="form.token" value="<%= @form.token %>"/>
+        <% for @field in @form.contact_form_field %>
+            <label><%= @field.label %></label>
+            <input type="text" ng-model="form.<%= @field.name %>" <%= 'required' if @field.required %>/>
+        <% end %>
+        <input type="submit" value="Submit"/>
+    </fieldset>
+</form>
+
