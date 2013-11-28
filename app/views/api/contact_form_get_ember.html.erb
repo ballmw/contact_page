@@ -1,0 +1,6 @@
+<form>
+    <legend><%= @form.description %></legend>
+    <% for @field in @form.contact_form_field %>
+        <p><label><%= @field.label %> {{input type="text" value=<%= @field.name %>}}</label></p>
+    <% end %>
+</form>

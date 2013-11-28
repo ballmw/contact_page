@@ -1,13 +1,14 @@
 ContactPage::Application.routes.draw do
   
 
-  get "api/form/:token" => "Api#contact_form_get"
-  get "api/form" => "Api#contact_form_get"
+  get "api/angular/form/:token" => "Api#angular_form"
+  get "api/ember/form/:token" => "Api#ember_form"
 
   post "api/form" => "Api#contact_form_post"
 
-  get "api/js/angualar/controller.js" => "Api#angular_controller"
-  get "api/js/ember/controller.js" => "Api#ember_controller"
+  get "api/angular/js/controller.js" => "Api#angular_controller"
+  get "api/ember/js/controller.js" => "Api#ember_controller"
+
   get "api/js/loader.js" => "Api#loader"
 
   #unused
@@ -15,9 +16,9 @@ ContactPage::Application.routes.draw do
 
   #OPTIONS tag for CORS
   resources :api, :only=>[:create]
-  match '/api/form/:token', :controller => 'Api', :action => 'contact_form_options', :constraints => {:method => 'OPTIONS'}
+  match '/api/angular/form/:token', :controller => 'Api', :action => 'angular_form', :constraints => {:method => 'OPTIONS'}
+  match '/api/ember/form/:token', :controller => 'Api', :action => 'ember_form', :constraints => {:method => 'OPTIONS'}
   match '/api/form', :controller => 'Api', :action => 'contact_form_options', :constraints => {:method => 'OPTIONS'}
-
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
